@@ -1,0 +1,15 @@
+h2 { padding-left: 25px;
+     color: blue;
+     text-shadow: 3px 3px 5px black; }
+#column { column-count: 3;
+          column-gap: 20px;
+          column-width: 100px;
+          column-rule: 2px solid pink;
+          -webkit-column-count: 3;
+          -webkit-column-gap: 20px;
+          -webkit-column-width: 100px;
+          -webkit-column-rule: 2px solid pink;
+          -moz-column-count: 3;
+          -moz-column-gap: 20px;
+          -moz-column-width: 100px;
+          -moz-column-rule: 2px solid pink; }

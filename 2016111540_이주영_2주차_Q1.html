@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+ <head>
+  <title> Q1 </title>
+  <style type="text/css">
+   .h1 { text-align: center;
+	 font-weight: bold; }
+   .h2 { color: red;
+	 font-weight: bold;
+	 font-style: italic;
+	 text-align: center; }
+   .h3 { color: blue;
+	 font-family: 궁서체;
+	 text-align: center; }
+   .line { color: blue;
+	   border-top: 3px double;
+	   align: center;
+	   width: 40%; }
+   .box { margin: auto;
+	  width: 40%;
+	  border: 1px;
+	  border-style: dotted; }
+   #text { text-align: center; }
+  </style>
+ </head>
+ <body>
+  <h1 class="h1"> 웹 프로그래밍 </h1>
+  <hr class="line">
+  <div class="box">
+   <h2 class="h2"> 2주차 과제입니다 </h2>
+  </div>
+  <div id="text">
+   <h3 class="h3"> Web Programming </h3>
+   이론: 월요일 15시 ~ 17시 <br>
+   실습: 수요일 15시 ~ 17시 <br>
+  </div>
+  <div>
+   <h3> 기타 정보 입력 </h3>
+   <hr>
+   <form>
+    <fieldset style="border:1px solid black; margin-bottom: 5px;">
+     <legend> 개인 정보 입력 </legend>
+     <p> 학번: <input type="text" name="id"> </p>
+     <p> PW: <input type="text" name="pw"> </p>
+    </fieldset>
+   </form>
+   소감문 <br> <br>
+   <form>
+    <textarea name="ta" rows="10" cols="50" style="overflow:hidden">본인 소개 및 과제 소감문 작성</textarea> <p>
+    <input type="submit" value="제출">
+   </form>
+  </div>
+ </body>
+</html>
