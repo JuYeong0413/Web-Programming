@@ -21,14 +21,14 @@
      var item = wpevent.dataTransfer.getData("Text");
      wpevent.target.appendChild(document.getElementById(item));
      var moved = "";
-     if(item == "item1") moved = "»ç°ú";
-     if(item == "item2") moved = "Æ÷µµ";
-     if(item == "item3") moved = "Ã¼¸®";
-     var str = moved + "¸¦ ¿Å°å½À´Ï´Ù.";
+     if(item == "item1") moved = "ì‚¬ê³¼";
+     if(item == "item2") moved = "í¬ë„";
+     if(item == "item3") moved = "ì²´ë¦¬";
+     var str = moved + "ë¥¼ ì˜®ê²¼ìŠµë‹ˆë‹¤.";
      document.getElementById("status").innerHTML = str;
      wpevent.stopPropagation(); }
   </script>
-  <h2> °úÀÏ ¸ñ·Ï </h2>
+  <h2> ê³¼ì¼ ëª©ë¡ </h2>
   <div id="div1" ondrop="drop(event)" ondragover="dragover(event)">
    <img class="fruit" id="item1" src="apple.png" draggable="true" ondragstart="dragstart(event)" 
 	ondragend="dragend(event)">
@@ -38,7 +38,7 @@
 	ondragend="dragend(event)">
   </div>
   <br> <br> <br> <br> <br> <br> <br>
-  <h2> Àå¹Ù±¸´Ï </h2>
+  <h2> ì¥ë°”êµ¬ë‹ˆ </h2>
   <div id="div2" ondrop="drop(event)" ondragover="dragover(event)"> </div>
   <br> <br> <br> <br> <br> <br>
   <h4 id="status"> </h4>
