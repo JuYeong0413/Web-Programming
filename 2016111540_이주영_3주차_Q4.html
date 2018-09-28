@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head> <title> Q4 </title>
+  <script>
+   window.onload = function() {
+	var img = document.createElement("img");
+	img.setAttribute("id", "sunflower");
+	img.setAttribute("src", "sunflower.jpg");
+	document.body.appendChild(img);
+
+	var one = document.getElementById('one');
+	var two = document.getElementById('two');
+	one.onclick = oneClick;
+	two.onclick = twoClick;
+	function oneClick() {
+	  one.style.color = 'white';
+	  one.style.background = 'black'; }
+	function twoClick() {
+	  var str = document.createTextNode("div2의 영역이죠");
+	  var divText = document.getElementById('two');
+	  divText.appendChild(str); }
+   };
+  </script>
+ </head>
+ <body>
+  <div id="one">여기는 DIV1 영역</div>
+  <div id="two">여기는 DIV2 영역</div>
+ </body>
+</html>
