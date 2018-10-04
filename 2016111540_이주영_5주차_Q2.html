@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title> Q2 </title>
+ <script>
+  window.onload = function() {
+    var img = document.createElement("img");
+    img.setAttribute("id", "sunflower");
+    img.setAttribute("src", "sunflower.jpg");
+    document.body.appendChild(img);
+  };
+ </script>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script>
+  $(document).ready(function() {
+    $('#one').click(function() {
+      $('#two').fadeOut(function() {
+      });
+      $(this).css('background', 'black');
+      $(this).css('color', 'white');
+    });
+    $('#two').click(function() {
+      $(this).fadeOut(function() {
+      });
+      $('#one').css('background', 'black');
+      $('#one').css('color', 'white');
+    });
+  });
+  </script>
+ </head>
+ <body>
+  <div id="one">여기는 DIV1 영역</div>
+  <div id="two">여기는 DIV2 영역</div>
+ </body>
+</html>
