@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Q4</title>
+<script type="text/javascript">
+var xhttp;
+function createHttpRequest() {
+	xhttp = new XMLHttpRequest(); <!-- XMLHttpRequest 객체 생성 -->
+}
+
+function mySend() {
+	createHttpRequest();
+	xhttp.onreadystatechange = callFunction;
+	<!-- onreadystatechange 이벤트는 서버와의 통신이 끝났을 때 호출되는 이벤트-->
+	xhttp.open("GET", "json.json", true);
+	<!-- HTTP 요구 방식은 GET, 요구하고자하는 URL은 json.json, 요구가 비동기식으로 수행됨 -->
+	xhttp.send(null);
+}
+
+function callFunction() {
+	if(xhttp.readyState == 4) { <!-- readystate는 통신의 현재 상태를 알려줌, 4는 통신이 완료되었음을 의미함 -->
+		if(xhttp.status == 200) { <!-- status는 HTTP 통신의 결과를 의미, 200은 통신이 성공했음을 의미함 -->
+			var responseData = xhttp.responseText; <!-- responseText 프로퍼티는 서버에서 전송한 데이터를 담고 있다. -->
+			var jsonObject = eval('(' + responseData + ')');
+			<!-- responseText로 JSON을 받았을 경우에는 그냥 Text이기 때문에 Object로 변환해주어야 한다. -->
+			var name = jsonObject.username;
+			var age = jsonObject.age;
+			var address = jsonObject.address;
+			document.getElementById("result").innerHTML = name + "\t" + age + "\t" + address; <!-- div 태그에 출력 -->
+		}
+	}
+}
+</script>
+</head>
+<body>
+	JSON 텍스트 파일 실습입니다.<br>
+	<button onclick="mySend()">파일 수신</button>
+	<div id="result"></div>
+</body>
+</html>

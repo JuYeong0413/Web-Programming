@@ -1,0 +1,36 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+ version="2.4">
+
+	<servlet>
+		<servlet-name>Insert</servlet-name>
+		<servlet-class>q3.InsertAction</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Insert</servlet-name>
+		<url-pattern>/Insert.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>List</servlet-name>
+		<servlet-class>q3.ListAction</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>List</servlet-name>
+		<url-pattern>/List.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Read</servlet-name>
+		<servlet-class>q3.ReadAction</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Read</servlet-name>
+		<url-pattern>/Read.do</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title> Q3 </title>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script>
+  $(document).ready(function() {
+    $("#one").click(function() {
+      $("#image").show().fadeOut("slow").slideDown("slow");
+    });
+    $("#two").click(function() {
+      $("#image").slideUp("slow");
+    });
+  });
+  </script>
+ </head>
+ <body>
+  <button id="one">Button01</button>
+  <button id="two">Button02</button>
+  <img id="image" src="kittens.jpg" alt="" style="display: none" />
+ </body>
+</html>

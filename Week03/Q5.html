@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head> <title> Q5 </title>
+  <style>
+   #map { position: absolute; visibility: hidden; }
+  </style>
+  <script type="text/javascript">
+   function showMap() {
+	map.style.visibility = "visible";
+   }
+   function hideMap() {
+	map.style.visibility = "hidden";
+   }
+  </script>
+ </head>
+ <body>
+  <div>
+   <input type="radio" name="button" value="hide" checked="checked" onclick="hideMap()"> ¼û±â±â
+   <input type="radio" name="button" value="show" onclick="showMap()"> º¸ÀÌ±â <p>
+  </div>
+  <div id="map">
+   <img src="map.png">
+  </div>
+ </body>
+</html>

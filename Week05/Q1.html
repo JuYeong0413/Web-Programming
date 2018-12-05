@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title> Q1 </title>
+ <style>
+  #box {
+    width: 70px; height: 70px;
+    background-color: blue;
+  }
+
+  #box.expand {
+    width: 150px;
+  }
+
+  #box.reduce {
+    width: 30px;
+  }
+ </style>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script>
+  $(document).ready(function() {
+    $('#button1').click(function() {
+      $('#box').removeClass('reduce');
+      $('#box').addClass('expand');
+    });
+    $('#button2').click(function() {
+      $('#box').removeClass('expand');
+      $('#box').addClass('reduce');
+    });
+  });
+  </script>
+ </head>
+ <body>
+  <div id="box"></div>
+  <br>
+  <button id="button1">»óÀÚ È®´ë</button>
+  <button id="button2">»óÀÚ Ãà¼Ò</button>
+ </body>
+</html>
