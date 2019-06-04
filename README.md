@@ -1,2 +1,2 @@
 # Web-Programming
-2018-2학기 웹프로그래밍
+2018-2 웹프로그래밍(Web Programming) 수업
