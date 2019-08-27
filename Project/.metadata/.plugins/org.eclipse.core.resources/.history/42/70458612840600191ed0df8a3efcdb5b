@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>\
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<div style="margin: 50px 0px 0px 70px">
+<%
+  int id, star;
+  String title = "", content ="";
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  
+  id = Integer.parseInt(request.getParameter("id"));
+  
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+  	String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+  	conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select * from review_tbl where id = " + id;
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  title = rs.getString("title");
+	  content = rs.getString("content");
+	  star = Integer.parseInt(rs.getString("star"));
+  }
+%>
+<h2>후기 수정</h2>
+<hr noshade align="left" width="120" size="3">
+<form action="reviewModify-db.jsp" method="post">
+  <table border="0">
+    <tr>
+      <td><img src="image/dot.png" width="12" height="12"> 카페명 </td>
+      <td><input type="text" name="name" size="58" value="<%= title %>"></td>
+    </tr>
+    <tr>
+      <td><img src="image/dot.png" width="12" height="12"> 별 &nbsp; 점 </td>
+      <td>
+      <select name="star">
+        <option value="1">1점</option>
+        <option value="2">2점</option>
+        <option value="3">3점</option>
+        <option value="4">4점</option>
+        <option value="5">5점</option>
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><img src="image/dot.png" width="12" height="12"> 내 &nbsp; 용 </td>
+      <td><textarea name="content" cols="60" rows="5" ><%= content %></textarea></td>
+    </tr>
+  </table><br>
+  <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
+  <input type="submit" value="확인">
+  <input type="button" value="취소" onclick="location.href='review.jsp?id=<%= id %>'">
+</form>
+</div>
+</body>
+</html>

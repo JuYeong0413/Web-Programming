@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+<script>
+<!--automatic image slide-->
+	var index = 0;
+	window.onload = function(){
+		slideShow();
+	}
+	
+	function slideShow(){
+		var i;
+		var x = document.getElementsByClassName("slide");
+		for(i=0;i<x.length;i++){
+			x[i].style.display = "none";
+		}
+		index++;
+		if(index > x.length){
+			index = 1;
+		}
+		x[index-1].style.display = "block";
+		setTimeout(slideShow, 4000);
+	}	
+	
+</script>
+<style>
+#footer {
+	position:absolute;
+	width:100%;
+	height:70px;
+	background:#ccc;
+}
+.slide{
+	width:100%;
+}
+</style>
+</head>
+<body>
+<div>
+	<img class="slide" src="image/slide1.jpg">
+	<img class="slide" src="image/slide2.jpg">
+	<img class="slide" src="image/slide3.jpg">
+<div>
+<br>
+<center>
+<span style="font:bold 3em;">
+<h2>WELCOME TO CafeGO</h2><br>
+</span>
+<span>
+카페의 모든 것을 한 눈에 확인할 수 있습니다<br>
+CafeGo와 함께 추억을 남겨보세요<br>
+</span>
+<br>
+<hr />
+<br>
+</center>
+</div>
+<div id="footer">
+<br>
+<center>
+본 페이지는 동국대학교 컴퓨터공학과 웹프로그래밍 프로젝트 결과물입니다
+</center>
+</div>
+</div>
+</body>
+</html>

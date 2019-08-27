@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ include file="nav.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="list.css" />
+<head>
+</head>
+<body>
+	<div style="margin: 50px 0 0 100px">
+		<h2>Cafe List</h2>
+		<hr noshade align="left" width="100" size="3">
+		
+			<center>
+			<div class="gallery">
+				<img src="image/반쥴.jpg" alt="banjul" width="800" height="600">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+
+			<div class="gallery">
+				<img src="image/에빈의커피이야기.jpg" alt="Forest" width="800" height="600">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+
+			<div class="gallery">
+				<img src="image/앤드커피랩.jpg" alt="Northern Lights" width="800"
+					height="600">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+
+			<div class="gallery">
+				<img src="image/맛차차.jpg" alt="Mountains" width="600" height="400">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+		</center>
+	</div>
+</body>
+</html>

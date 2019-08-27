@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+<!--automatic image slide-->
+	var index = 0;
+	window.onload = function(){
+		slideShow();
+	}
+	
+	function slideShow(){
+		var i;
+		var x = document.getElementsByClassName("slide");
+		for(i=0;i<x.length;i++){
+			x[i].style.display = "none";
+		}
+		index++;
+		if(index > x.length){
+			index = 1;
+		}
+		x[index-1].style.display = "block";
+		setTimeout(slideShow, 4000);
+	}	
+	
+</script>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+
+<body>
+<div>
+<center>
+<img src = "image/logo.png" width="330px" height="110px" align="center">
+</center>
+</div>
+<div class="nav_wrapper"> 
+  <nav class="menu">
+    <ul>
+      <li><a href="#Link" title="Link">Home</a>
+        <ul>
+          <li><a href="#Link" title="Link">홈페이지 소개</a></li>
+          <li><a href="#Link" title="Link">오늘의 카페 추천</a></li>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">List</a>
+        <ul>
+          <li><a href="#Link" title="Link ">카페 목록</a></li>
+          <li><a href="#Link" title="Link">카페 분류 »</a>
+          <ul>
+              <li><a href="#Link" title="Link">별점</a></li>
+              <li><a href="#link" title="Link">지역</a></li>
+              <li><a href="#Link" title="Link">테마</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">Review</a>
+        <ul>
+          <li><a href="#Link" title="Link">방문 후기 목록</a></li>
+          <li><a href="#Link" title="Link">방문 후기 작성</a></li>
+          <li><a href="#Link" title="Link">방문 후기 수정</a></li>
+          <li><a href="#Link" title="Link">방문 후기 삭제</a></li>
+          </ul>
+      </li>
+      <li><a href="#Link" title="Link">Login</a>
+        <ul>
+          <li><a href="#Link" title="Link">로그인</a></li>
+          <li><a href="#Link" title="Link">아이디 찾기</a></li>
+          <li><a href="#Link" title="Link">비밀번호 찾기</a></li>
+          <li><a href="#Link" title="Link">회원가입</a></li>
+        </ul>
+      </li>
+     </ul>
+  </nav>
+	<img class="slide" src="image/temp_image.jpg" >
+	<img class="slide" src="image/temp_image2.jpg" >
+	<img class="slide" src="image/temp_image3.jpg">	
+홈페이지 소개
+<br>
+etc
+</div>
+
+</body>
+</html>

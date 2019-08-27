@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>   
+<%@ page import="com.CafeGo.DBConnector" %>
+<%@ page import="com.CafeGo.logincheck" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	session.removeAttribute("id");
+	session.removeAttribute("login");
+	session.invalidate();
+%>
+<center>
+<h2>이용해주셔서 감사합니다.</h2>
+<input type="button" value="메인페이지로 이동" onclick="location.href='main.jsp'">
+</center>
+</body>
+</html>

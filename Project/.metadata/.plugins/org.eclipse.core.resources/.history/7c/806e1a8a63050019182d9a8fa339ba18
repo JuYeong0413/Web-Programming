@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>   
+<%@ page import ="java.sql.*" %>
+<%@ page import="com.CafeGo.DBConnector" %>
+<%@ page import="com.CafeGo.logincheck" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	String id = (String)session.getAttribute("id");
+	String name;
+	String bdate;
+	String username;
+	String email;
+	String number;
+	
+	Connection conn = DBConnector.getMySQLConnection();
+	String sql = "select * from uer_tbl where id = ?";
+	
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1,id);
+	ResultSet rs = pstmt.executeQuery();
+	rs.next();
+	name = rs.getString("name");
+	bdate = rs.getString("birthday");
+	username = rs.getString("nickname");
+	email = rs.getString("email");
+	number = rs.getString("phone");
+	
+	DBConnector.close(rs);
+	DBConnector.close(pstmt);
+	DBConnector.close(conn);
+%>
+<h2>회원정보</h2>
+이름 : <%=name %><br>
+생년월일 : <%=bdate %><br>
+닉네임 : <%=username %><br>
+이메일 : <%=email %><br>
+전화번호 : <%=number %><br>
+</body>
+</html>

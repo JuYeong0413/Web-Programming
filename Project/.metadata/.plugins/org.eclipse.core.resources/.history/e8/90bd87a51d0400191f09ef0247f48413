@@ -1,0 +1,17 @@
+.btn {
+    margin: 0 0 16px;
+    height: 62px;
+    font-size: 2.1rem;
+    line-height: 26px;
+    font-weight: bold;
+    padding: 17px;
+    min-width: 390px;
+    
+    -webkit-transition: color linear .4s, background-color linear .4s, border-color linear .4s;
+    transition: color linear .4s, background-color linear .4s, border-color linear .4s; }
+    text-decoration: none;
+    outline: none; }
+    
+.rounded {
+	border-radius: 40px; }
+	

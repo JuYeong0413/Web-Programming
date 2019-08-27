@@ -1,0 +1,53 @@
+<%@ page import="com.project_CafeGo.DBConnector" %>
+<%@ page import="com.project_CafeGo.logincheck" %>
+<%@ page import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String name=request.getParameter("name");
+	String id=request.getParameter("id");
+	int bdate = Integer.parseInt(request.getParameter("bdate"));		
+	String username=request.getParameter("username");
+	String password=request.getParameter("password_o");
+	String email=request.getParameter("email");
+	int number=Integer.parseInt(request.getParameter("number"));
+	
+	if(logincheck.idcheck(id)){
+		out.println("<script>");
+		out.println("alert('이미 사용중인 아이디입니다.')");
+		out.println("location.href='signup.jsp'");
+		out.println("</script>");
+	}
+%>
+	
+<%
+	Connection conn = DBConnector.getMySQLConnection();
+	String sql = "insert into member.member(name, id, bdate, username, password, email, number) values(?,?,?,?,?,?,?)";
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	
+	pstmt.setString(1, name);
+	pstmt.setString(2,id);
+	pstmt.setInt(3, bdate);
+	pstmt.setString(4,username);
+	pstmt.setString(5,password);
+	pstmt.setString(6,email);
+	pstmt.setInt(7,number);
+	pstmt.executeUpdate();
+	
+	DBConnector.close(pstmt);
+	DBConnector.close(conn);
+	
+	response.sendRedirect("welcomeSignup.jsp");
+%>
+</body>
+</html>
+
+<!-- http://code1018.tistory.com/71 -->

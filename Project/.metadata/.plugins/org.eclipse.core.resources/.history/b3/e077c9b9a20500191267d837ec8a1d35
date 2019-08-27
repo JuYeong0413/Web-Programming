@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.*" %>
+<% request.setCharacterEncoding("utf-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<%
+  int temp = 0, cnt;
+  int newId = 0;
+  int star = 0;
+  String name = "", title, content, date;
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  String sqlUpdate;
+    
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+	  conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select max(id) as maxId, count(*) as cnt from review_tbl";
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  cnt = Integer.parseInt(rs.getString("cnt"));
+	  if(cnt != 0)
+		  newId = Integer.parseInt(rs.getString("maxId"));
+  }
+  
+  newId++;
+  title = request.getParameter("title");
+  content = request.getParameter("content");
+  star = Integer.parseInt(request.getParameter("star"));
+  
+  String userId = (String)session.getAttribute("user");
+  
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+	  conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select nickname from user_tbl where id = " + userId;
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  name = rs.getString("nickname");
+  }
+  
+  try {
+  	sqlUpdate = "insert into review_tbl values(" + newId + ",'" + name + "','" + title + "','" + content + "',sysdate()," + star + ")";
+  	stmt.executeUpdate(sqlUpdate);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+%>
+<center><h2>후기가 등록되었습니다.</h2>
+<input type="button" value="후기 목록 보기" onclick="location.href='review.jsp'">
+</body>
+</html>

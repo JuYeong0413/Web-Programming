@@ -1,0 +1,48 @@
+body {
+  background: #f2f2f2;
+}
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #2f3b3f;
+  padding: 5px;
+  height: 50px;
+  border-radius: 2px;
+  outline: none;
+  color: #9DBFAF;
+  font-size: 20px;
+}
+
+.searchTerm:focus {
+  color: #2f3b3f;
+}
+
+.searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 180px;
+  height: 66px;
+  border: 1px solid #2f3b3f;
+  background: #2f3b3f;
+  text-align: center;
+  color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.wrap {
+  margin: 300px 0px 0px 20px; /*위, 오른쪽, 아래, 왼쪽*/
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

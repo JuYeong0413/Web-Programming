@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="searchPage.css">
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<form action="search-db.jsp" method="post">
+<div class="wrap">
+   <div class="search">
+      <input type="text" name="input" class="searchTerm" placeholder="  검색하려는 카페명을 입력하세요...">
+      <button type="submit" class="searchButton" value="Search" />
+      <!-- <i class="fa fa-search"></i> -->
+   </div>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<%@ page import="java.sql.*" %>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<%
+  int id, star;
+  String title = "", content = "";
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  
+  id = Integer.parseInt(request.getParameter("id"));
+  title = request.getParameter("title");
+  content = request.getParameter("content");
+  star = Integer.parseInt(request.getParameter("star"));
+  
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+  	String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+  	conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "update review_tbl set title = '" + title + "', content = '" + content + "', star = " + star + " where id = " + id;
+	  stmt.executeUpdate(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+%>
+<center><h2>회원정보가 수정되었습니다.</h2>
+<input type="button" value="메인 페이지로 이동" onclick="location.href='main.jsp'">
+</center>
+</body>
+</html>

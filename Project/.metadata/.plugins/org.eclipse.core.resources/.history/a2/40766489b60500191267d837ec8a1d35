@@ -1,0 +1,95 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+<link rel="stylesheet" href="table.css" />
+</head>
+<body>
+<div>
+<center>
+<a href="main.jsp"><img src = "image/logo.png" width="264px" height="88px" align="center"></a>
+</center>
+</div> 
+<div class="nav_wrapper"> 
+  <nav class="menu">
+    <ul>
+      <li><a href="#Link" title="Link">Home</a>
+        <ul>
+          <li><a href="#Link" title="Link">홈페이지 소개</a></li>
+          <li><a href="#Link" title="Link">오늘의 카페 추천</a></li>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">List</a>
+        <ul>
+          <li><a href="#Link" title="Link ">카페 목록</a></li>
+          <li><a href="#Link" title="Link">카페 분류 »</a>
+          <ul>
+              <li><a href="#Link" title="Link">별점</a></li>
+              <li><a href="#link" title="Link">지역</a></li>
+              <li><a href="#Link" title="Link">테마</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">Review</a>
+        <ul>
+          <li><a href="#Link" title="Link">방문 후기 목록</a></li>
+          <li><a href="#Link" title="Link">방문 후기 작성</a></li>
+          <li><a href="#Link" title="Link">방문 후기 수정</a></li>
+          <li><a href="#Link" title="Link">방문 후기 삭제</a></li>
+          </ul>
+      </li>
+      <li><a href="#Link" title="Link">Login</a>
+        <ul>
+          <li><a href="#Link" title="Link">로그인</a></li>
+          <li><a href="#Link" title="Link">아이디 찾기</a></li>
+          <li><a href="#Link" title="Link">비밀번호 찾기</a></li>
+          <li><a href="#Link" title=" Link">회원가입</a></li>
+        </ul>
+      </li>
+     </ul>
+  </nav>
+
+  
+  <%
+	String input = request.getParameter("search");
+    Connection conn = null;
+    Statement stmt = null;
+    String sql = null;
+    ResultSet rs = null;
+    
+    try {
+    	Class.forName("com.mysql.jdbc.Driver");
+    	String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+    	conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+    	stmt = conn.createStatement();
+    	sql = "select * from cafe_tbl where name like '%" + input + "%'";
+    	rs = stmt.executeQuery(sql);
+    }
+    catch(Exception e) {
+    	out.println("DB 연동 오류. : " + e.getMessage());
+    }
+
+    while(rs.next())
+    {
+    	
+    }
+  %>
+  
+  <h1><span style="color: red">"<%= input %>"</span>이 포함된 카페명 검색 결과</h1>
+  <hr noshade align="left" width="120" size="3">
+  <!-- 화면 출력 부분 넣어야 함 -->
+    
+  <%
+    stmt.close();
+    conn.close();
+  %>
+</div>
+</body>
+</html>

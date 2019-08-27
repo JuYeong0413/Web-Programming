@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <div>
+  <h2>아이디 찾기</h2>
+  <hr noshade align="left" width="120" size="3">
+  <form>
+    <fieldset style="width: 400px">
+      <legend>이메일로 찾기</legend>
+        <table border="0">
+          <tr>
+            <td>이 &nbsp; 름 : </td>
+            <td><input type="text" placeholder="이름" name="name" id="name" value=''></td>
+            <td rowspan="2" width="45"><input type="submit" value="확인" style="width: 40pt; height: 40pt"></td>
+          </tr>
+          <tr>
+            <td>이메일 : </td>
+            <td><input type="text" placeholder="가입시 사용한 이메일" name="email" id="email" value=''></td>
+          </tr>
+        </table>
+      </fieldset>
+    </form>
+  </div>
+<div style="float:right; width:50%;">
+연락처로 찾기<br><br>
+<form action="findConfig_num.jsp" method="post">
+<label>이    름 :</label>
+<input type="text" placeholder="이름" name="name" id="name" value=''/><br>
+<label>연락처 :</label>
+<input type="text" placeholder="-없이 입력" name="tel" id="tel" value=''/><br>
+<input type="submit" value="확인"/>
+</form>
+</div>
+</div>
+<br><br>
+<div>
+<h2>비밀번호 찾기</h2>
+<hr noshade align="left" width="120" size="3">
+<div style="float:left;width:50%;">
+<form action="findConfig_pass.jsp" method="post">
+<label>이    름 :</label>
+<input type="text" placeholder="이름" name ="name" id="name" value=''/><br>
+<label>이메일 :</label>
+<input type="text" placeholder="가입시 사용한 이메일" name="email" id="email" value=''/><br>
+<input type="submit" value="확인"/>
+</form>
+</div>
+</div>
+</form>
+</body>
+</html>

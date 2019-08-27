@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<div>
+<center>
+<img src = "image/logo.png" width="264px" height="88px" align="center">
+</center>
+</div> 
+<div class="nav_wrapper"> 
+  <nav class="menu">
+    <ul>
+      <li><a href="#Link" title="Link">Home</a>
+        <ul>
+          <li><a href="#Link" title="Link">홈페이지 소개</a></li>
+          <li><a href="#Link" title="Link">오늘의 카페 추천</a></li>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">List</a>
+        <ul>
+          <li><a href="#Link" title="Link ">카페 목록</a></li>
+          <li><a href="#Link" title="Link">카페 분류 »</a>
+          <ul>
+              <li><a href="#Link" title="Link">별점</a></li>
+              <li><a href="#link" title="Link">지역</a></li>
+              <li><a href="#Link" title="Link">테마</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">Review</a>
+        <ul>
+          <li><a href="#Link" title="Link">방문 후기 목록</a></li>
+          <li><a href="#Link" title="Link">방문 후기 작성</a></li>
+          <li><a href="#Link" title="Link">방문 후기 수정</a></li>
+          <li><a href="#Link" title="Link">방문 후기 삭제</a></li>
+          </ul>
+      </li>
+      <li><a href="#Link" title="Link">Login</a>
+        <ul>
+          <li><a href="#Link" title="Link">로그인</a></li>
+          <li><a href="#Link" title="Link">아이디 찾기</a></li>
+          <li><a href="#Link" title="Link">비밀번호 찾기</a></li>
+          <li><a href="#Link" title=" Link">회원가입</a></li>
+        </ul>
+      </li>
+     </ul>
+  </nav>
+<h2>후기 작성</h2>
+<hr noshade align="left" width="120" size="3">
+<form action="reviewWrite-db.jsp" method="post">
+  <table border="0">
+    <tr>
+      <td><img src="image/dot.png" width="12" height="12"> 카페명 </td>
+      <td><input type="text" name="title" size="58"></td>
+    </tr>
+    <tr>
+      <td><img src="image/dot.png" width="12" height="12"> 별 &nbsp; 점 </td>
+      <td>
+      <select name="star">
+        <option value="1">1점</option>
+        <option value="2">2점</option>
+        <option value="3">3점</option>
+        <option value="4">4점</option>
+        <option value="5">5점</option>
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><img src="image/dot.png" width="12" height="12"> 내 &nbsp; 용 </td>
+      <td><textarea name="content" cols="60" rows="5"></textarea></td>
+    </tr>
+  </table><br>
+  <input type="submit" value="확인">
+</form>
+</div>
+</body>
+</html>

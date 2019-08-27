@@ -1,0 +1,60 @@
+<%@ page import="com.CafeGo.DBConnector" %>
+<%@ page import="com.CafeGo.logincheck" %>
+<%@ page import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String name = request.getParameter("name");
+	String id = request.getParameter("id");
+	String bdate = request.getParameter("bdate");		
+	String username = request.getParameter("nickname");
+	String password = request.getParameter("password");
+	String email = request.getParameter("email");
+	String number = request.getParameter("tel");
+	if(number == null) number = "-";
+	if(bdate.equals("")) bdate="1900-01-01";
+
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	int flag = "0";
+	
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+	  	String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+	  	conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+		stmt = conn.createStatement();
+		String sql = "select exists(select * from user_tbl where nickname = '" + username +"') as success";
+		rs = stmt.executeQuery(sql);
+	}
+	catch(Exception e) {
+		out.println("DB 연동 오류. : " + e.getMessage());
+	}
+	  
+	while(rs.next()) {
+		flag = rs.getInt("success");
+		if(flag == 1) {
+			out.println("<script>");
+			out.println("alert('중복된 닉네임입니다.')");
+			out.println("location.href='signup.jsp");
+			out.println("</script>");	
+		}
+		else {
+%>
+<script>
+  history.back();
+</script>
+<%
+		}
+	}
+%>
+</body>
+</html>

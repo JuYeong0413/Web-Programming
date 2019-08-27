@@ -1,0 +1,45 @@
+<%@ page import="com.CafeGo.DBConnector" %>
+<%@ page import="com.CafeGo.logincheck" %>
+<%@ page import="java.sql.*" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String name = request.getAttribute("name");
+	String id = request.getAttribute("id");
+	String bdate = request.getAttribute("bdate");		
+	String username = request.getAttribute("nickname");
+	String password = request.getAttribute("password");
+	String email = request.getAttribute("email");
+	String number = request.getAttribute("tel");
+
+	Connection conn = null;
+	ResultSet rs = null;
+
+	conn = DBConnector.getMySQLConnection();
+	String sql = "insert into user_tbl(name, id, birthday, nickname, password, email, tel) values(?,?,?,?,?,?,?)";
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	
+	pstmt.setString(1, name);
+	pstmt.setString(2, id);
+	pstmt.setString(3, bdate);
+	pstmt.setString(4, username);
+	pstmt.setString(5, password);
+	pstmt.setString(6, email);
+	pstmt.setString(7, number);
+	pstmt.executeUpdate();
+	
+	DBConnector.close(pstmt);
+	DBConnector.close(conn);
+	
+	response.sendRedirect("welcomeSignup.jsp");
+%>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>   
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<center>
+ <h2>가입을 환영합니다!</h2>
+ <input type="button" value="로그인하기" onclick="location.href='login.jsp'"/>
+</center>
+</body>
+</html>

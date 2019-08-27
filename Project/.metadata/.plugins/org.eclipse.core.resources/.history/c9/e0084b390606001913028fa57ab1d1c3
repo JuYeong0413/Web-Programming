@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<%@ page import="com.CafeGo.DBConnector" %>
+<%@ page import="com.CafeGo.logincheck" %>
+<%@ page import="javax.swing.JOptionPane" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>회원정보 수정</h2>
+	<hr noshade align="left" width="120" size="3">
+	<small><span style="color: red">*</span> 표시는 필수 입력 사항입니다.</small><br><br>
+	<div>
+	<form accept-charset="UTF-8" role="form" name="fr" method="post" action="infoModify-db.jsp" onsubmit="return formcheck()">
+      <table border="0" width="600">
+      <tr height="50">
+        <td><img src="image/dot.png" width="12" height="12"> 이름<span style="color: red">*</span></td>
+        <td><input name="name" value="" id="name" placeholder="이름" type="text" /></td>
+        <td><img src="image/dot.png" width="12" height="12"> 생년월일</td>
+        <td><input type="date" id="bdate" name="bdate"></td>
+      </tr>
+      <tr height="50">
+        <td><img src="image/dot.png" width="12" height="12"> 아이디<span style="color: red">*</span></td>
+        <td><input name="id" value="<%= (String)session.getAttribute("id") %>" id="id" type="text" readonly />
+        </td>
+        <td><img src="image/dot.png" width="12" height="12"> 닉네임<span style="color: red">*</span></td>
+        <td><input name="nickname" value="" id="nickname" placeholder="후기 작성시 사용" type="text" /></td>
+      </tr>
+      <tr height="50">
+        <td><img src="image/dot.png" width="12" height="12"> 비밀번호<span style="color: red">*</span></td>
+        <td><input name="password" value="" id="password" placeholder="비밀번호" type="text" /></td>
+        <td><img src="image/dot.png" width="12" height="12"> 비밀번호 확인<span style="color: red">*</span></td>
+        <td><input name="password_c" value="" id="password_c" placeholder="비밀번호 확인" type="text" /></td>
+      </tr>
+      <tr height="50">
+        <td><img src="image/dot.png" width="12" height="12"> 이메일<span style="color: red">*</span></td>
+        <td><input name="email" value="" id="email" placeholder="이메일" type="text" /></td>
+        <td><img src="image/dot.png" width="12" height="12"> 연락처</td>
+        <td><input name="tel" value="" id="number" placeholder="-포함해서 입력" type="text"/></td>
+      </tr>
+      </table>
+      <input type="submit" value="가입">
+      <input type="button" value="취소" onclick="location.href='main.jsp'">
+      </form>
+	</div>
+	
+<script type="text/javascript">
+function formcheck(){
+if(fr.name.value == "") {
+    alert("이름을 입력해주세요.");
+    fr.name.focus();
+    return false;
+  }
+else if(fr.id.value == "") {
+    alert("아이디를 입력해주세요.");
+    fr.id.focus();
+    return false;
+  }
+else if(fr.nickname.value == "") {
+    alert("닉네임을 입력해주세요.");
+    fr.nickname.focus();
+    return false;
+  }
+else if(fr.password.value == "") {
+    alert("비밀번호를 입력해주세요.");
+    fr.password.focus();
+    return false;
+  }
+else if(fr.password.value != fr.password_c.value) {
+    alert("비밀번호가 일치하지 않습니다.");
+    fr.password.focus();
+    return false;
+  }
+else if(fr.email.value == "") {
+    alert("이메일을 입력해주세요.");
+    fr.email.focus();
+    return false;
+  }
+  else {
+	  location.href="infoModify-db.jsp";
+	  return true;
+  }
+}
+</script>
+</body>
+</html>

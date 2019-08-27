@@ -1,0 +1,5 @@
+INDEX VERSION 1.130
+C:\Users\JY\Desktop\새 폴더\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2247740210.index
+\CafeGo\src
+C:\Users\samsung\Desktop\새 폴더\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2247740210.index
+\CafeGo\src

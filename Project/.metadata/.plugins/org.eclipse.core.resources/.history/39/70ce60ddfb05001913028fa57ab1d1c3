@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<h2>카페 후기</h2>
+<hr noshade align="left" width="120" size="3">
+<%
+  String userId = (String)session.getAttribute("id");
+  
+  if(userId == null) {
+	  out.println("<script>");
+	  out.println("alert('로그인 후 이용 가능합니다.')");
+	  out.println("document.location.href='login.jsp'");
+	  out.println("</script>");
+  }
+
+  int id = 0;
+  int star = 0;
+  String name = "", title = "", content ="", date = "";
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  
+  id = Integer.parseInt(request.getParameter("id"));
+  
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+  	  String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+  	  conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select * from review_tbl where id = " + id;
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  name = rs.getString("name");
+	  title = rs.getString("title");
+	  content = rs.getString("content");
+	  date = rs.getString("date");
+	  star = Integer.parseInt(rs.getString("star"));
+  }
+%>
+<table border="0" width="500">
+  <tr>
+    <td><img src="image/dot.png" width="12" height="12"> 카페명 </td>
+    <td><%= title %></td>
+    <td><img src="image/dot.png" width="12" height="12"> 별 &nbsp; 점 </td>
+    <td><%= star %>점</td>
+  </tr>
+  <tr>
+    <td><img src="image/dot.png" width="12" height="12"> 작성자 </td>
+    <td><%= name %></td>
+    <td><img src="image/dot.png" width="12" height="12"> 작성일 </td>
+    <td><%= date %></td>
+  </tr>
+  <tr>
+    <td colspan="4"></td>
+  </tr>
+  <tr>
+    <td colspan="4"><%= content %></td>
+  </tr>
+</table><br>
+
+<button id="modify" onclick="location.href='reviewModify.jsp?id=<%= id %>'">글수정</button>
+<input type="button" value="글삭제" onclick="deleteClick();">
+<input type="button" value="글목록" onclick="location.href='review.jsp'">
+
+<script>
+	function deleteClick() {
+		var flag = confirm("작성하신 글을 삭제하시겠습니까?\n삭제된 글은 복구될 수 없습니다.");
+		  
+		if(flag) { // 확인 버튼 클릭시
+			location.href="reviewDelete-db.jsp?id=<%= id%>";  
+		}
+		else { // 취소 버튼 클릭시
+			  
+		}
+	}
+</script>
+</body>
+</html>

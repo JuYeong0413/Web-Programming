@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<%@ page import="com.project_CafeGo.DBConnector" %>
+<%@ page import="com.project_CafeGo.logincheck" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--비밀번호 찾기  -->
+<%
+	String name = request.getParameter("name");
+	String rs = logincheck.password(name);
+	if(rs!="n"){
+		out.println("<center>");
+		out.println("비밀번호는 "+rs+ "입니다.");
+		out.println("</center>");
+	}else {
+		out.println("등록되지 않은 정보입니다.");
+	}	
+%>
+<input type="button" value="로그인" onclick="location.href='login.jsp'"/> 
+</body>
+</html>

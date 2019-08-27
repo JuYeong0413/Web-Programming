@@ -1,0 +1,95 @@
+html {
+  font-family: sans-serif;
+  color: #4b5f65;
+  background: #f5f7fa;
+}
+
+body { overflow-x:hidden}
+
+nav { width: 100%; }
+
+.nav_wrapper {
+  position: fixed;
+  left: 0;
+  top: 100px;
+  width: 100%;
+  <!--menu background => default : black-->
+  background: #2f3b3f;
+}
+
+.menu {
+  width: 100%;
+  height: auto;
+  background: #2f3b3f;
+}
+
+.menu ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+}
+
+.menu > li > ul.sub_menu {
+  min-width: 10em;
+  padding: 4px 0;
+  background-color: #f4f4f4;
+  border: 1px solid #fff;
+}
+
+.menu ul li { padding: 0px; }
+
+.menu > ul > li { display: inline-block; }
+
+.menu ul li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.menu ul li a:hover {
+  background: #efa666;
+  color: #fff;
+  transition: all .5s ease-out;
+}
+
+.menu ul li.hover > a {
+  background: #efa666;
+  color: #fff;
+}
+
+.menu ul li > a { padding: 15px; }
+
+.menu ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  min-width: 160px;
+  background: #39484d;
+}
+
+.menu ul li:hover > ul { display: block;}
+
+.menu ul ul > li { position: relative; }
+
+.menu ul ul > li a {
+  padding: 10px 15px;
+  height: auto;
+  background: #39484d;
+}
+
+.menu ul ul > li a:hover {
+  background: #efa666;
+  color: #fff;
+}
+
+.menu ul ul ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+.slide {
+	width:100%;
+}

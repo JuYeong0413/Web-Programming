@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+<link rel="stylesheet" href="table.css" />
+</head>
+<body>
+<%
+  String userId = (String)session.getAttribute("id");
+
+  String nickname = "";
+  Connection conn = null;
+  PreparedStatement pstmt = null;
+  ResultSet rs = null;
+%>
+<h2>작성한 글 목록</h2>
+<hr noshade align="left" width="120" size="3">
+<table>
+  <tr>
+    <td align="center" bgcolor="silver" width="75">글번호</td>
+    <td align="center" bgcolor="silver" width="275">카페명</td>
+    <td align="center" bgcolor="silver" width="100">작성자</td>
+    <td align="center" bgcolor="silver" width="100">게시일</td>
+  </tr>
+  
+  <%
+    int id;
+    int rownum = 0;
+    conn = null;
+    Statement stmt = null;
+    String sql = null;
+    rs = null;
+    
+    try {
+    	Class.forName("com.mysql.jdbc.Driver");
+    	String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+    	conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+    	stmt = conn.createStatement();
+    	sql = "select * from review_tbl where nickname = '" + nickname + "' order by id desc";
+    	rs = stmt.executeQuery(sql);
+    }
+    catch(Exception e) {
+    	out.println("DB 연동 오류. : " + e.getMessage());
+    }
+    
+    rs.last();
+    rownum = rs.getRow();
+    rs.beforeFirst();
+    
+    while(rs.next())
+    {
+    	id = Integer.parseInt(rs.getString("id"));
+  %>
+    
+    <tr>
+      <td align="center"><%= rownum %></td>
+      <td align="left"><a href=reviewRead.jsp?id=<%= rs.getString("id") %> width="250">
+        <%= rs.getString("title") %></a></td>
+      <td align="center"><%= rs.getString("name") %></td>
+      <td align="center"><%= rs.getString("date").substring(0, 11) %></td>
+    </tr>
+    
+  <%
+    rownum--;
+    }
+  %>
+</table>
+<%
+  stmt.close();
+  conn.close();
+%>
+</body>
+</html>

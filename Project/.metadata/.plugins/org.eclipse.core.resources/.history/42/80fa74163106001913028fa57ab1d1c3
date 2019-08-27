@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<h2>후기 작성</h2>
+<hr noshade align="left" width="120" size="3">
+<form action="reviewWrite-db.jsp" method="post">
+  <table border="0">
+    <tr>
+      <td><img src="image/dot.png" width="12" height="12"> 카페명 </td>
+      <td><input type="text" name="title" size="58"></td>
+    </tr>
+    <tr>
+      <td><img src="image/dot.png" width="12" height="12"> 별 &nbsp; 점 </td>
+      <td>
+      <select name="star">
+        <option value="1">1점</option>
+        <option value="2">2점</option>
+        <option value="3">3점</option>
+        <option value="4">4점</option>
+        <option value="5">5점</option>
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><img src="image/dot.png" width="12" height="12"> 내 &nbsp; 용 </td>
+      <td><textarea name="content" cols="60" rows="5" placeholder="200자 이내로 작성해주세요."></textarea></td>
+    </tr>
+  </table><br>
+  <input type="submit" value="확인">
+</form>
+</body>
+</html>

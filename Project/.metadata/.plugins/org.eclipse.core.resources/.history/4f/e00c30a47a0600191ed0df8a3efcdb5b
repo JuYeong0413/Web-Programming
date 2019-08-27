@@ -1,0 +1,123 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.*" %>
+<%@ include file="nav.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+<link rel="stylesheet" href="list.css" />
+<head>
+</head>
+<body>
+	<div style="margin: 50px 0 0 100px">
+		<h2>Cafe List</h2>
+		<hr noshade align="left" width="100" size="3">
+		<form action="listShow.jsp" method="post">
+		<big><b>지역으로 분류하기</b></big>
+		<select name="category" style="height: 30px; font-size: 15px">
+			<option value="0">--선택--</option>
+			<option value="종로구">종로구</option>
+			<option value="중구">중구</option>
+        	<option value="용산구">용산구</option>
+        	<option value="성동구">성동구</option>
+        	<option value="광진구">광진구</option>
+        	<option value="동대문구">동대문구</option>
+			<option value="중랑구">중랑구</option>
+        	<option value="성북구">성북구</option>
+        	<option value="강북구">강북구</option>
+        	<option value="도봉구">도봉구</option>
+        	<option value="노원구">노원구</option>
+			<option value="은평구">은평구</option>
+        	<option value="서대문구">서대문구</option>
+        	<option value="마포구">마포구</option>
+        	<option value="양천구">양천구</option>
+        	<option value="강서구">강서구</option>
+			<option value="구로구">구로구</option>
+        	<option value="금천구">금천구</option>
+        	<option value="영등포구">영등포구</option>
+        	<option value="동작구">동작구</option>
+        	<option value="관악구">관악구</option>
+			<option value="서초구">서초구</option>
+        	<option value="강남구">강남구</option>
+        	<option value="송파구">송파구</option>
+        	<option value="강동구">강동구</option>
+      	</select>
+      	<input type="submit" value="확인" style="width: 45px; height: 30px;">
+      	</form>
+      	<br>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	int cnt;
+	int count = 0;
+	String name = "", theme = "", location = "", tel = "", link = "";
+	Connection conn = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+		conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+		stmt = conn.createStatement();
+		String sql = "select count(*) as cnt from cafe_tbl";
+		rs = stmt.executeQuery(sql);
+	} catch (Exception e) {
+		out.println("DB 연동 오류. : " + e.getMessage());
+	}
+
+	while (rs.next()) {
+		cnt = Integer.parseInt(rs.getString("cnt"));
+	}
+
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+		conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+		stmt = conn.createStatement();
+		String sql = "select * from cafe_tbl";
+		rs = stmt.executeQuery(sql);
+	} catch (Exception e) {
+		out.println("DB 연동 오류. : " + e.getMessage());
+	}
+
+	while (rs.next()) {
+		count++;
+		name = rs.getString("name");
+		theme = rs.getString("theme");
+		if(theme == null) theme = "";
+		location = rs.getString("location");
+		tel = rs.getString("tel");
+		if(tel == null) tel ="";
+		else tel = "☎ ".concat(tel);
+		link = rs.getString("link");
+		if(link == null) link = "";
+%>
+	
+	<center>
+		<div class="gallery">
+			<img src="image/<%= name %>.jpg">
+			<div class="desc">
+				<big><b><%= name %></b></big><br>
+				카페 테마 : <%= theme %><br>
+				<%= location %><br>
+				<%= tel %><br>
+				<%= link %>
+			</div>
+		</div>
+	</center>
+	
+<%
+	}
+%>
+	</div>
+<%
+  stmt.close();
+  conn.close();
+%>
+</body>
+</html>

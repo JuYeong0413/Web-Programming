@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<%@ page import="com.project_CafeGo.DBConnector" %>
+<%@ page import="com.project_CafeGo.logincheck" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--전화번호로 아이디 찾기  -->
+<%
+	String number = request.getParameter("tel");
+	String rs = logincheck.id_t(number);
+	if(rs!="n"){
+		out.println("<center>");
+		out.println("아이디는 "+rs+ "입니다.");
+		out.println("</center>");
+	}else {
+		out.println("등록되지 않은 전화번호입니다.");
+	}	
+%>
+<input type="button" value="로그인" onclick="location.href='login.jsp'"/> 
+</body>
+</html>ss

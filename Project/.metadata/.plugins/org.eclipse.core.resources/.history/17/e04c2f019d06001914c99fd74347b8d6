@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>   
+<%@ page import="com.CafeGo.DBConnector" %>
+<%@ page import="com.CafeGo.logincheck" %>
+<%@ page import="javax.swing.JOptionPane" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("utf-8");
+	String id = request.getParameter("id");
+
+	if(logincheck.idcheck(id)){
+		JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
+	}
+	else JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다.");
+%>
+</body>
+</html>

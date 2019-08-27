@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.*" %>
+<%@ include file="nav.jsp" %>
+<% request.setCharacterEncoding("utf-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<%
+	request.setCharacterEncoding("utf-8");	
+	String category = request.getParameter("category");
+	
+	
+%>
+<div style="margin: 50px 0 0 100px">
+<h2><span style="color: red">"<%= category %>"</span> 카페</h2>
+		<h2>Cafe List</h2>
+      	<br>
+			<center>
+			<div class="gallery">
+				<img src="image/반쥴.jpg" alt="반쥴" width="800" height="600">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+
+			<div class="gallery">
+				<img src="image/에빈의커피이야기.jpg" alt="에빈의커피이야기" width="800" height="600">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+
+			<div class="gallery">
+				<img src="image/앤드커피랩.jpg" alt="앤드커피랩" width="800" height="600">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+
+			<div class="gallery">
+				<img src="image/맛차차.jpg" alt="맛차차" width="600" height="400">
+				<div class="desc">Add a description of the image here</div>
+			</div>
+			</center>
+</div>
+<%
+  int temp = 0, cnt;
+  int newId = 0;
+  int star = 0;
+  String name = "", title, content, date;
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  String sqlUpdate;
+    
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+	  conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select * from cafe_tbl where location like '%" + category + "%'";
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  cnt = Integer.parseInt(rs.getString("cnt"));
+	  if(cnt != 0)
+		  newId = Integer.parseInt(rs.getString("maxId"));
+  }
+  
+  newId++;
+  title = request.getParameter("title");
+  content = request.getParameter("content");
+  star = Integer.parseInt(request.getParameter("star"));
+  
+  String userId = (String)session.getAttribute("user");
+  
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+	  conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select nickname from user_tbl where id = " + userId;
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  name = rs.getString("nickname");
+  }
+  
+  try {
+  	sqlUpdate = "insert into review_tbl values(" + newId + ",'" + name + "','" + title + "','" + content + "',sysdate()," + star + ")";
+  	stmt.executeUpdate(sqlUpdate);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+%>
+<center>
+<h2>후기가 등록되었습니다.</h2>
+<input type="button" value="후기 목록 보기" onclick="location.href='review.jsp'">
+</center>
+</body>
+</html>

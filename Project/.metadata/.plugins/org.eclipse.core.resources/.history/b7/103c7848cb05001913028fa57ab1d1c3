@@ -1,0 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="com.project_CafeGo.DBConnector" %>
+<%@ page import="com.project_CafeGo.logincheck" %>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("UTF-8");	
+	String id = request.getParameter("id");
+	String pass = request.getParameter("password");
+	
+	/*if(logincheck.pass(id,pass)){
+		out.println("성공");
+	}
+	else{
+		out.println("실패");
+	}*/
+	
+	Connection conn = DBConnector.getMySQLConnection();
+	
+	String sql = "select * from member.user_tbl where id =?";
+	PreparedStatement pstmt = conn.prepareStatement(sql);
+	
+	pstmt.setString(1,id);
+	ResultSet rs = pstmt.executeQuery();
+	String password="";	
+
+	rs.next();
+	password=rs.getString("password");
+		
+	DBConnector.close(rs);
+	DBConnector.close(pstmt);
+	DBConnector.close(conn);
+	
+	if(password.equals(pass)){
+		out.println("<script>");
+		out.println("alert('로그인 되었습니다. 환영합니다.')");
+		out.println("location.href='main.jsp'");
+		out.println("</script>");
+	}else{
+		out.println("<script>");
+		out.println("alert('로그인에 실패했습니다.')");
+		out.println("location.href='login.jsp'");
+		out.println("</script>");
+	}		
+%>
+</body>
+</html>

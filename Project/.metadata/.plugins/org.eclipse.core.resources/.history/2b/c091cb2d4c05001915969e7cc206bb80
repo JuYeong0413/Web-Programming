@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ include file="nav.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="">
+<div>
+<h2>아이디 찾기</h2><br>
+<div style="float:left; width:50%;">
+이메일로 찾기<br><br>
+<label>이    름 :</label>
+<input type="text" placeholder="이름" id="name" value=''/><br>
+<label>이메일 :</label>
+<input type="text" placeholder="가입시 사용한 이메일" id="email" value=''/><br>
+<input type="submit" value="확인"/>
+</div>
+<div style="float:right; width:50%;">
+연락처로 찾기<br><br>
+<label>이    름 :</label>
+<input type="text" placeholder="이름" id="name" value=''/><br>
+<label>연락처 :</label>
+<input type="text" placeholder="-없이 입력" id="number" value=''/><br>
+<input type="submit" value="확인"/>
+</div>
+</div>
+<br><br>
+<div>
+<h2>비밀번호 찾기</h2><br>
+<div style="float:left;width:50%;">
+<label>이    름 :</label>
+<input type="text" placeholder="이름" id="name" value=''/><br>
+<label>이메일 :</label>
+<input type="text" placeholder="가입시 사용한 이메일" id="email" value=''/><br>
+<input type="submit" value="확인"/>
+</div>
+</div>
+</form>
+</body>
+</html>

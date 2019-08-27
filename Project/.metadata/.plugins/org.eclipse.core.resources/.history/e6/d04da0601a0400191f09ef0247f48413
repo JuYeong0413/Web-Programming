@@ -1,0 +1,106 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.*" %>
+<% request.setCharacterEncoding("utf-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<div>
+<center>
+<img src = "image/temp_logo.JPG" width="70px" height="55px" align="center">
+</center>
+</div> 
+<div class="nav_wrapper"> 
+  <nav class="menu">
+    <ul>
+      <li><a href="#Link" title="Link">Home</a>
+        <ul>
+          <li><a href="#Link" title="Link">홈페이지 소개</a></li>
+          <li><a href="#Link" title="Link">오늘의 카페 추천</a></li>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">List</a>
+        <ul>
+          <li><a href="#Link" title="Link ">카페 목록</a></li>
+          <li><a href="#Link" title="Link">카페 분류 »</a>
+          <ul>
+              <li><a href="#Link" title="Link">별점</a></li>
+              <li><a href="#link" title="Link">지역</a></li>
+              <li><a href="#Link" title="Link">테마</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#Link" title="Link">Review</a>
+        <ul>
+          <li><a href="#Link" title="Link">방문 후기 목록</a></li>
+          <li><a href="#Link" title="Link">방문 후기 작성</a></li>
+          <li><a href="#Link" title="Link">방문 후기 수정</a></li>
+          <li><a href="#Link" title="Link">방문 후기 삭제</a></li>
+          </ul>
+      </li>
+      <li><a href="#Link" title="Link">Login</a>
+        <ul>
+          <li><a href="#Link" title="Link">로그인</a></li>
+          <li><a href="#Link" title="Link">아이디 찾기</a></li>
+          <li><a href="#Link" title="Link">비밀번호 찾기</a></li>
+          <li><a href="#Link" title=" Link">회원가입</a></li>
+        </ul>
+      </li>
+     </ul>
+  </nav>
+
+<%
+  int temp = 0, cnt;
+  int newId = 0;
+  int star = 0;
+  String name, title, content, date;
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  String sqlUpdate;
+    
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  String url = "jdbc:mysql://localhost:3306/project";
+	  conn = DriverManager.getConnection(url, "juyeong", "0413");
+	  stmt = conn.createStatement();
+	  String sql = "select max(id) as maxId, count(*) as cnt from review_tbl";
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  cnt = Integer.parseInt(rs.getString("cnt"));
+	  if(cnt != 0)
+		  newId = Integer.parseInt(rs.getString("maxId"));
+  }
+  
+  newId++;
+  title = request.getParameter("title");
+  content = request.getParameter("content");
+  star = Integer.parseInt(request.getParameter("star"));
+  name = "name";
+  
+  try {
+  	sqlUpdate = "insert into review_tbl values(" + newId + ",'" + name + "','" + title + "','" + content + "',sysdate()," + star + ")";
+  	stmt.executeUpdate(sqlUpdate);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+%>
+<center><h2>후기가 등록되었습니다.</h2>
+<button id="list" onclick="location.href='review.jsp'">후기 목록 보기</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+package com.project_CafeGo;
+
+import java.sql.*;
+
+public class logincheck {
+	public static boolean pass(String id, String password) {
+		String pass;
+		
+		Connection conn = DBConnector.getMySQLConnection();
+		String sql="select * from member.member where id =?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			pass = rs.getString("password");
+			DBConnector.close(rs);
+			DBConnector.close(pstmt);
+			DBConnector.close(conn);
+			if(pass.equals(password)) {
+				return true;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;		
+	}
+	
+	public static boolean idcheck(String id) {
+		
+		Connection conn = DBConnector.getMySQLConnection();
+		String sql = "select id from member.member";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				if(rs.getString("id").equals(id)) {
+					return true;
+				}
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+}

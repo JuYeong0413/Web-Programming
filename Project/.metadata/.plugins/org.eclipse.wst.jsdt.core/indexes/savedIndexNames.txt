@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+C:\Users\samsung\Desktop\»õ Æú´õ\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1726185117.index
+1927368232.index
+2247740210.index
+3456225564.index
+445193332.index
+40137489.index
+529894956.index

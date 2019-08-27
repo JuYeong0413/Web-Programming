@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.text.*" %>
+<%@ include file="nav.jsp" %>
+<% request.setCharacterEncoding("utf-8"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="reponsiveNavigation.css" />
+</head>
+<body>
+<%
+  String name = "", tel = "", id = "";
+  Connection conn = null;
+  Statement stmt = null;
+  ResultSet rs = null;
+  
+  name = request.getParameter("name");
+  tel = request.getParameter("tel");
+    
+  try {
+	  Class.forName("com.mysql.jdbc.Driver");
+	  String jdbcurl = "jdbc:mysql://localhost:3306/cafeGO";
+	  conn = DriverManager.getConnection(jdbcurl, "project", "cafego");
+	  stmt = conn.createStatement();
+	  String sql = "select id from user_tbl where name = '" + name + "' and tel = '" + tel + "'";
+	  rs = stmt.executeQuery(sql);
+  }
+  catch(Exception e) {
+	  out.println("DB 연동 오류. : " + e.getMessage());
+  }
+  
+  while(rs.next()) {
+	  id = rs.getString("id");
+  }
+%>
+<center>
+  <h2>아이디 찾기 결과</h2>
+  <hr noshade width="120" size="3">
+  <%= name %>님의 아이디는 <span style="color: blue"><b><%= id %></b></span> 입니다.<br>
+  <input type="button" value="로그인 하기" onclick="location.href='login.jsp'">
+</center>
+</body>
+</html>
